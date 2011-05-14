@@ -28,6 +28,10 @@ package org.swizframework.core
 	{
 		import mx.modules.Module;
 	}
+	CONFIG::sparkonly
+	{
+		import spark.modules.Module;
+	}
 	
 	import org.swizframework.events.BeanEvent;
 	import org.swizframework.events.SwizEvent;
@@ -545,6 +549,11 @@ package org.swizframework.core
 				addRemovedDisplayObject( DisplayObject( event.target ) );
 			
 			CONFIG::standard
+			{
+				if( event.target is Module )
+					addRemovedDisplayObject( DisplayObject( event.target ) );
+			}
+			CONFIG::sparkonly
 			{
 				if( event.target is Module )
 					addRemovedDisplayObject( DisplayObject( event.target ) );

@@ -23,6 +23,12 @@ package org.swizframework.utils
 		import mx.modules.Module;
 		import mx.modules.ModuleManager;
 	}
+	
+	CONFIG::sparkonly
+	{
+		import spark.modules.Module;
+		import mx.modules.ModuleManager;
+	}
 
 	public class DomainUtil
 	{
@@ -57,7 +63,15 @@ package org.swizframework.utils
 					return moduleInfo.currentDomain;
 				}
 			}
-			
+			CONFIG::sparkonly
+			{
+				if( object is Module )
+				{
+					var moduleInfo:Object = ModuleManager.getAssociatedFactory( object ).info();
+					return moduleInfo.currentDomain;
+				}
+			}
+
 			return null;
 		}
 	}
